@@ -46,7 +46,6 @@ public class ListingOptions {
         }
     }
 
-
     public void printWithoutIndent(String path) {
         try (Stream<Path> stream = Files.walk(Path.of(path))) {
             stream.forEach(System.out::println);

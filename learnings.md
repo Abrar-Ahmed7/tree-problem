@@ -15,5 +15,8 @@ are being used here.
 - And we are getting just the directories name using listFiles().
 - So, we need both methods.
 ---
-
+### note:
+- All methods will work for any directories.
+- As for now, hard coded the path as "src" however it won't change the fact of 1st point.
+- Common CLI are yet to be implemented
 

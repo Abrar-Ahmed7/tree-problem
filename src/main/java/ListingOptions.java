@@ -21,7 +21,6 @@ public class ListingOptions {
         }
         printDirectoriesAndFiles(files, ++index, level);
     }
-
     public void printDirectories(List<File> files, int index, int level){
         if (index == files.size())
             return;

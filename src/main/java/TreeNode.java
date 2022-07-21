@@ -20,7 +20,7 @@ public class TreeNode<T> {
         this.filesCount = 0;
     }
 
-    public TreeNode<File> createDirTree(File folder, Boolean onlyDirectories) {
+    public TreeNode<File> rootDirTree(File folder, Boolean onlyDirectories) {
         if (!folder.isDirectory()) {
             throw new IllegalArgumentException("folder is not a Directory");
         }
@@ -28,11 +28,11 @@ public class TreeNode<T> {
         List<File> files = List.of(folder.listFiles());
         files.forEach(file -> {
             if (file.isDirectory()) {
-                appendDirTree(file, dirRoot, onlyDirectories);
                 dirCount++;
+                appendDirTree(file, dirRoot, onlyDirectories);
             } else {
-                appendFile(file, dirRoot, onlyDirectories);
                 filesCount++;
+                appendFile(file, dirRoot, onlyDirectories);
             }
         });
         return dirRoot;
@@ -43,18 +43,19 @@ public class TreeNode<T> {
         List<File> files = List.of(folder.listFiles());
         files.forEach(file -> {
             if (file.isDirectory()) {
-                appendDirTree(file, dirRoot.children.get(dirRoot.children.size() - 1), onlyDirectories);
                 dirCount++;
+                appendDirTree(file, dirRoot.children.get(dirRoot.children.size() - 1), onlyDirectories);
             } else {
-                appendFile(file, dirRoot.children.get(dirRoot.children.size() - 1), onlyDirectories);
                 filesCount++;
+                appendFile(file, dirRoot.children.get(dirRoot.children.size() - 1), onlyDirectories);
             }
         });
     }
 
     public void appendFile(File file, TreeNode<File> fileNode, Boolean onlyDirectories) {
-        if (onlyDirectories)
+        if (onlyDirectories) {
             return;
+        }
         fileNode.addChild(file);
     }
 
@@ -67,10 +68,11 @@ public class TreeNode<T> {
 
     public List<StringBuilder> getDirectoryTree(TreeNode<File> tree, Boolean relativePath) {
         List<StringBuilder> result = new LinkedList<>();
-        if (relativePath)
+        if (relativePath) {
             result.add(new StringBuilder().append(tree.data));
-        else
+        } else {
             result.add(new StringBuilder().append(tree.data.getName()));
+        }
         Iterator<TreeNode<File>> iterator = tree.children.iterator();
         while (iterator.hasNext()) {
             List<StringBuilder> subtree = getDirectoryTree(iterator.next(), relativePath);
@@ -100,14 +102,16 @@ public class TreeNode<T> {
     }
 
     public String getDirCount() {
-        if (dirCount > 1)
+        if (dirCount > 1) {
             return dirCount + " directories";
+        }
         return dirCount + " directory";
     }
 
     public String getFilesCount() {
-        if (filesCount > 1)
+        if (filesCount > 1) {
             return filesCount + " files";
+        }
         return filesCount + " file";
     }
 }

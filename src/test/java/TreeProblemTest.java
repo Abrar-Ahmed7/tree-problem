@@ -15,25 +15,10 @@ public class TreeProblemTest {
         TreeNode treeNode = new TreeNode();
 
         //Creating Directories and Files
-        File theDir = new File(String.valueOf(Path.of("src","test","resource","dummy","for","test")));
-        if (!theDir.exists()){
-            theDir.mkdirs();
-        }
-        try {
-            File newFile = new File("src/test/resource/dummy.txt");
-            File newFile1 = new File("src/test/resource/dummy/dummy.txt");
-            File newFile2 = new File("src/test/resource/dummy/dummy2.txt");
-            File newFile3 = new File("src/test/resource/dummy/for/test/dummy.txt");
-            newFile.createNewFile();
-            newFile1.createNewFile();
-            newFile2.createNewFile();
-            newFile3.createNewFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        createDirectories();
 
         //Given
-        List<String> expectedOutput = Arrays.asList("resource",
+        List<String> expectedOutput = Arrays.asList("resources",
                 "|--dummy",
                 "|\t|--dummy.txt",
                 "|\t|--for",
@@ -43,8 +28,8 @@ public class TreeProblemTest {
                 "|--dummy.txt");
 
         //When
-        File file = new File("src/test/resource");
-        TreeNode<File> dirTree = treeNode.createDirTree(file,false);
+        File file = new File("src/test/resources");
+        TreeNode<File> dirTree = treeNode.rootDirTree(file,false);
         List<StringBuilder> resultantOutput = treeNode.getDirectoryTree(dirTree, false);
 
         //Then
@@ -53,7 +38,7 @@ public class TreeProblemTest {
         }
 
         //Deleting directories and files
-        deleteDirectory(new File("src/test/resource"));
+        deleteDirectory(new File("src/test/resources"));
     }
 
     @Test
@@ -61,32 +46,17 @@ public class TreeProblemTest {
         TreeNode treeNode = new TreeNode();
 
         //Creating Directories and Files
-        File theDir = new File(String.valueOf(Path.of("src","test","resource","dummy","for","test")));
-        if (!theDir.exists()){
-            theDir.mkdirs();
-        }
-        try {
-            File newFile = new File("src/test/resource/dummy.txt");
-            File newFile1 = new File("src/test/resource/dummy/dummy.txt");
-            File newFile2 = new File("src/test/resource/dummy/dummy2.txt");
-            File newFile3 = new File("src/test/resource/dummy/for/test/dummy.txt");
-            newFile.createNewFile();
-            newFile1.createNewFile();
-            newFile2.createNewFile();
-            newFile3.createNewFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        createDirectories();
 
         //Given
-        List<String> expectedOutput = Arrays.asList("resource",
+        List<String> expectedOutput = Arrays.asList("resources",
                 "|--dummy",
                 "\t|--for",
                 "\t\t|--test");
 
         //When
-        File file = new File("src/test/resource");
-        TreeNode<File> dirTree = treeNode.createDirTree(file,true);
+        File file = new File("src/test/resources");
+        TreeNode<File> dirTree = treeNode.rootDirTree(file,true);
         List<StringBuilder> resultantOutput = treeNode.getDirectoryTree(dirTree, false);
 
         //Then
@@ -95,7 +65,7 @@ public class TreeProblemTest {
         }
 
         //Deleting directories and files
-        deleteDirectory(new File("src/test/resource"));
+        deleteDirectory(new File("src/test/resources"));
     }
 
     @Test
@@ -103,36 +73,21 @@ public class TreeProblemTest {
         TreeNode treeNode = new TreeNode();
 
         //Creating Directories and Files
-        File theDir = new File(String.valueOf(Path.of("src","test","resource","dummy","for","test")));
-        if (!theDir.exists()){
-            theDir.mkdirs();
-        }
-        try {
-            File newFile = new File("src/test/resource/dummy.txt");
-            File newFile1 = new File("src/test/resource/dummy/dummy.txt");
-            File newFile2 = new File("src/test/resource/dummy/dummy2.txt");
-            File newFile3 = new File("src/test/resource/dummy/for/test/dummy.txt");
-            newFile.createNewFile();
-            newFile1.createNewFile();
-            newFile2.createNewFile();
-            newFile3.createNewFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        createDirectories();
 
         //Given
-        List<String> expectedOutput = Arrays.asList("src/test/resource",
-                "|--src/test/resource/dummy",
-                "|\t|--src/test/resource/dummy/dummy.txt",
-                "|\t|--src/test/resource/dummy/for",
-                "|\t|\t|--src/test/resource/dummy/for/test",
-                "|\t|\t\t|--src/test/resource/dummy/for/test/dummy.txt",
-                "|\t|--src/test/resource/dummy/dummy2.txt",
-                "|--src/test/resource/dummy.txt");
+        List<String> expectedOutput = Arrays.asList("src/test/resources",
+                "|--src/test/resources/dummy",
+                "|\t|--src/test/resources/dummy/dummy.txt",
+                "|\t|--src/test/resources/dummy/for",
+                "|\t|\t|--src/test/resources/dummy/for/test",
+                "|\t|\t\t|--src/test/resources/dummy/for/test/dummy.txt",
+                "|\t|--src/test/resources/dummy/dummy2.txt",
+                "|--src/test/resources/dummy.txt");
 
         //When
-        File file = new File("src/test/resource");
-        TreeNode<File> dirTree = treeNode.createDirTree(file,false);
+        File file = new File("src/test/resources");
+        TreeNode<File> dirTree = treeNode.rootDirTree(file,false);
         List<StringBuilder> resultantOutput = treeNode.getDirectoryTree(dirTree, true);
 
         //Then
@@ -141,7 +96,7 @@ public class TreeProblemTest {
         }
 
         //Deleting directories and files
-        deleteDirectory(new File("src/test/resource"));
+        deleteDirectory(new File("src/test/resources"));
     }
 
     @Test
@@ -150,32 +105,17 @@ public class TreeProblemTest {
         TreeNode treeNode = new TreeNode();
 
         //Creating Directories and Files
-        File theDir = new File(String.valueOf(Path.of("src","test","resource","dummy","for","test")));
-        if (!theDir.exists()){
-            theDir.mkdirs();
-        }
-        try {
-            File newFile = new File("src/test/resource/dummy.txt");
-            File newFile1 = new File("src/test/resource/dummy/dummy.txt");
-            File newFile2 = new File("src/test/resource/dummy/dummy2.txt");
-            File newFile3 = new File("src/test/resource/dummy/for/test/dummy.txt");
-            newFile.createNewFile();
-            newFile1.createNewFile();
-            newFile2.createNewFile();
-            newFile3.createNewFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        createDirectories();
 
         //Given
-        List<String> expectedOutput = Arrays.asList("src/test/resource",
-                "|--src/test/resource/dummy",
-                "\t|--src/test/resource/dummy/for",
-                "\t\t|--src/test/resource/dummy/for/test");
+        List<String> expectedOutput = Arrays.asList("src/test/resources",
+                "|--src/test/resources/dummy",
+                "\t|--src/test/resources/dummy/for",
+                "\t\t|--src/test/resources/dummy/for/test");
 
         //When
-        File file = new File("src/test/resource");
-        TreeNode<File> dirTree = treeNode.createDirTree(file,true);
+        File file = new File("src/test/resources");
+        TreeNode<File> dirTree = treeNode.rootDirTree(file,true);
         List<StringBuilder> resultantOutput = treeNode.getDirectoryTree(dirTree, true);
 
         //Then
@@ -184,7 +124,26 @@ public class TreeProblemTest {
         }
 
         //Deleting directories and files
-        deleteDirectory(new File("src/test/resource"));
+        deleteDirectory(new File("src/test/resources"));
+    }
+
+    public void createDirectories(){
+        File theDir = new File(String.valueOf(Path.of("src","test","resources","dummy","for","test")));
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
+        try {
+            File newFile = new File("src/test/resources/dummy.txt");
+            File newFile1 = new File("src/test/resources/dummy/dummy.txt");
+            File newFile2 = new File("src/test/resources/dummy/dummy2.txt");
+            File newFile3 = new File("src/test/resources/dummy/for/test/dummy.txt");
+            newFile.createNewFile();
+            newFile1.createNewFile();
+            newFile2.createNewFile();
+            newFile3.createNewFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void deleteDirectory(File file){

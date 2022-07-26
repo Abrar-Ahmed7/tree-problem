@@ -6,8 +6,6 @@ import java.util.Map;
 
 public class TreeProblem {
     public static void main(String[] args) {
-
-//        Option tree = new Option("tree", false, "fetches directories and files");
         Option dirArg = new Option("d", false, "fetches directories alone");
         Option relativePathArg = new Option("f", false, "fetches relative path of directories and files");
         Option viewPermissionsArg = new Option("p", false, "fetches permissions of directories and files");
@@ -17,7 +15,6 @@ public class TreeProblem {
 
         CommandLineParser clp = new DefaultParser();
         Options options = new Options();
-//        options.addOption(tree);
         options.addOption(dirArg);
         options.addOption(relativePathArg);
         options.addOption(viewPermissionsArg);
@@ -55,13 +52,8 @@ public class TreeProblem {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        TreeNode treeNode = new TreeNode();
-//        TreeNodeXml treeNodeXml = new TreeNodeXml<>();
-//        TreeNode<File> dirTree = treeNode.rootDirTree(file, dirConditions);
-//        List<StringBuilder> xmlResult = treeNode.getDirectoryTree(dirTree, conditions);
         ListingOptions listingOptions = new ListingOptions();
         listingOptions.getTree(file, dirConditions, conditions).forEach(System.out::println);
-//        xmlResult.forEach(System.out::println);
     }
 
     private static int getLevelArgIndex(String[] args) {
